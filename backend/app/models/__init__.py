@@ -9,6 +9,14 @@ from app.models.application import (
     ApplicationStatus,
     VALID_STATUS_TRANSITIONS,
 )
+from app.models.ledger import (
+    ScholarshipAllocation,
+    ExpenseRequest,
+    LedgerTransaction,
+    ExpenseCategory,
+    ExpenseStatus,
+    TransactionType,
+)
 
 __all__ = [
     "User",
@@ -21,4 +29,10 @@ __all__ = [
     "ApplicationDocument",
     "ApplicationStatus",
     "VALID_STATUS_TRANSITIONS",
+    "ScholarshipAllocation",
+    "ExpenseRequest",
+    "LedgerTransaction",
+    "ExpenseCategory",
+    "ExpenseStatus",
+    "TransactionType",
 ]
