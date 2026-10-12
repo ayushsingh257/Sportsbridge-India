@@ -18,6 +18,7 @@ from app.models.ledger import (
     TransactionType,
 )
 from app.models.audit import AuditLog
+from app.models.contact import ContactTicket, Notification, TicketCategory
 
 __all__ = [
     "User",
@@ -37,4 +38,7 @@ __all__ = [
     "ExpenseStatus",
     "TransactionType",
     "AuditLog",
+    "ContactTicket",
+    "Notification",
+    "TicketCategory",
 ]

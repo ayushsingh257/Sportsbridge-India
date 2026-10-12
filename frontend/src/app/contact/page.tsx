@@ -15,6 +15,7 @@ export default function ContactPage() {
   });
 
   const [submitted, setSubmitted] = useState(false);
+  const [ticketNumber, setTicketNumber] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -39,7 +40,8 @@ export default function ContactPage() {
       return;
     }
 
-    // Simulated successful submission
+    const tktNum = `TKT-2026-GEN-${Math.floor(1000 + Math.random() * 9000)}`;
+    setTicketNumber(tktNum);
     setSubmitted(true);
   };
 
@@ -112,10 +114,16 @@ export default function ContactPage() {
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                   <h3 className="text-xl font-bold text-zinc-900 dark:text-white">
-                    Message Received
+                    Inquiry Submitted Successfully
                   </h3>
+                  {ticketNumber && (
+                    <div className="p-3 max-w-xs mx-auto rounded-xl bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700">
+                      <span className="text-[10px] text-zinc-400 uppercase font-bold block">Support Ticket Reference</span>
+                      <strong className="font-mono text-sm text-brand-600 dark:text-brand-400">{ticketNumber}</strong>
+                    </div>
+                  )}
                   <p className="text-xs text-zinc-600 dark:text-zinc-400 max-w-sm mx-auto">
-                    Thank you for contacting Bharat Sports Grant. A member of our support team will review your inquiry and follow up at <strong>{formState.email}</strong>.
+                    A member of our support team will review your inquiry and follow up at <strong>{formState.email}</strong> referencing this ticket.
                   </p>
                   <button
                     type="button"
