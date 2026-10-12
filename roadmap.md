@@ -32,14 +32,14 @@
 ### Phase 1: Requirements, Repository Inspection, and Project Foundation
 - **Phase Number:** 1
 - **Phase Title:** Requirements, Repository Inspection, and Project Foundation (Revision 1 — Project Structure Correction)
-- **Objectives:** Establish comprehensive monorepo root structure (`frontend/`, `backend/`, `docs/`, `.github/`, root orchestration files); configure Next.js / TypeScript foundation files and FastAPI / Python foundation modules; implement initial health check endpoint and test foundations; update governance and architecture documentation.
+- **Objectives:** Establish focused monorepo root structure with exclusively `frontend/` and `backend/` project directories (no `docs/` or `.github/` directories); configure Next.js / TypeScript foundation files and FastAPI / Python foundation modules; implement initial health check endpoint and test foundations; update governance and architecture documentation.
 - **Planned Deliverables:**
   - Initialized Git repository targeting `main` branch with remote `https://github.com/ayushsingh257/Sportsbridge-India.git`.
-  - Monorepo structure with discrete `frontend/` and `backend/` directories.
+  - Clean structure with exclusively `frontend/` and `backend/` directories.
   - Frontend foundation: `package.json`, strict `tsconfig.json`, `.env.example`, `public/`, `src/` modules, initial utilities, and unit test.
   - Backend foundation: `pyproject.toml`, `requirements.txt`, `.env.example`, `app/` subpackages, `app/main.py` health endpoint, and unit tests.
-  - Root orchestration: `docker-compose.yml`, `.github/workflows/ci.yml`.
-  - Engineering governance & specifications: `green.md` (18 mandatory standards), `AGENTS.md`, `roadmap.md`, `README.md`, and complete `docs/` suite.
+  - Root orchestration: `docker-compose.yml`.
+  - Engineering governance & specifications: `green.md` (18 mandatory standards), `AGENTS.md`, `roadmap.md`, and `README.md`.
 - **Dependencies:** None.
 - **Acceptance Criteria:**
   - `frontend/` and `backend/` exist with valid configuration and no missing architectural roots.

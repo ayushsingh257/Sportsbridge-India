@@ -99,17 +99,6 @@ Sportsbridge-India/
 │   ├── pyproject.toml        # Backend build configuration and tool options
 │   └── .env.example          # Backend environment variables template
 │
-├── docs/                     # Architectural, API, database, and security specifications
-│   ├── architecture.md       # High-level architecture and module boundaries
-│   ├── api.md                # REST API contract definitions and schemas
-│   ├── database.md           # Relational schema and ER diagrams
-│   ├── security.md           # Threat model, RBAC matrix, and upload safeguards
-│   ├── eligibility-rules.md  # Multi-sport criteria rules engine details
-│   └── deployment.md         # Deployment, Docker, and migration instructions
-│
-├── .github/
-│   └── workflows/            # GitHub Actions CI/CD pipelines
-│
 ├── docker-compose.yml        # Local orchestration for frontend, backend, PostgreSQL
 ├── .gitignore                # Monorepo git exclusion rules
 ├── AGENTS.md                 # Antigravity agent operational guidelines
@@ -117,14 +106,6 @@ Sportsbridge-India/
 ├── README.md                 # Project documentation and guide
 └── roadmap.md                # Master development phase tracker
 ```
-
-Detailed architectural diagrams and specifications are available in:
-- [Architecture Documentation](docs/architecture.md)
-- [API Specification](docs/api.md)
-- [Database Specification](docs/database.md)
-- [Security Model](docs/security.md)
-- [Eligibility Rules Engine](docs/eligibility-rules.md)
-- [Deployment Guidelines](docs/deployment.md)
 
 ---
 
