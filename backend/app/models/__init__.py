@@ -17,6 +17,7 @@ from app.models.ledger import (
     ExpenseStatus,
     TransactionType,
 )
+from app.models.audit import AuditLog
 
 __all__ = [
     "User",
@@ -35,4 +36,5 @@ __all__ = [
     "ExpenseCategory",
     "ExpenseStatus",
     "TransactionType",
+    "AuditLog",
 ]
