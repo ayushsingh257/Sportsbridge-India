@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { LogIn, Trophy, ArrowRight, ShieldCheck, UserCheck, AlertCircle } from "lucide-react";
 import { useAuth } from "@/components/auth/auth-context";
 import { loginUser } from "@/services/auth-service";
+import { ShaderBackground } from "@/components/ui/213";
 
 function LoginForm() {
   const router = useRouter();
@@ -46,7 +47,7 @@ function LoginForm() {
   };
 
   return (
-    <div className="w-full max-w-md p-8 rounded-2xl bg-white dark:bg-[#121216] border border-zinc-200 dark:border-zinc-800 shadow-xl space-y-6">
+    <div className="w-full max-w-md p-8 rounded-3xl bg-white/95 dark:bg-[#121216]/90 backdrop-blur-xl border border-white/80 dark:border-zinc-800/80 shadow-2xl space-y-6">
       <div className="text-center space-y-2">
         <div className="w-12 h-12 rounded-xl bg-brand-600 text-white flex items-center justify-center mx-auto shadow-md">
           <Trophy className="w-6 h-6" />
@@ -149,10 +150,18 @@ function LoginForm() {
 
 export default function LoginPage() {
   return (
-    <div className="py-12 md:py-20 min-h-[calc(100vh-5rem)] flex items-center justify-center bg-zinc-50/50 dark:bg-[#0c0c0e] px-4 transition-colors">
-      <Suspense fallback={<div className="text-xs text-zinc-500">Loading portal...</div>}>
-        <LoginForm />
-      </Suspense>
+    <div className="relative min-h-[calc(100vh-5rem)] flex items-center justify-center overflow-hidden px-4 py-12 md:py-20 transition-colors">
+      {/* Dynamic 21st.dev Mesh Drift Shader Background */}
+      <div className="absolute inset-0 pointer-events-none opacity-90 dark:opacity-75">
+        <ShaderBackground className="h-full w-full" />
+      </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/30 via-transparent to-white/40 dark:from-black/40 dark:via-transparent dark:to-black/50 pointer-events-none" />
+
+      <div className="relative z-10 w-full max-w-md">
+        <Suspense fallback={<div className="text-xs text-zinc-500">Loading portal...</div>}>
+          <LoginForm />
+        </Suspense>
+      </div>
     </div>
   );
 }
