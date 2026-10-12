@@ -15,6 +15,7 @@ import {
   HelpCircle,
   Sparkles,
 } from "lucide-react";
+import { ApplicationSuccessModal } from "@/components/applications/application-success-modal";
 
 interface EvaluationResult {
   is_eligible: boolean;
@@ -35,6 +36,9 @@ export default function EligibilitySelectionPage() {
   const [hasBan, setHasBan] = useState<boolean>(false);
   const [isEvaluating, setIsEvaluating] = useState<boolean>(false);
   const [evalResult, setEvalResult] = useState<EvaluationResult | null>(null);
+  const [isSubmittingApp, setIsSubmittingApp] = useState<boolean>(false);
+  const [submittedAppNumber, setSubmittedAppNumber] = useState<string | null>(null);
+  const [showSuccessModal, setShowSuccessModal] = useState<boolean>(false);
 
   const handleAssess = (sportCode: string) => {
     setSelectedSport(sportCode);
@@ -125,6 +129,18 @@ export default function EligibilitySelectionPage() {
         prime_age_bonus: athleteAge >= 12 && athleteAge <= 24,
       },
     });
+  };
+
+  const handleSubmitApplication = async () => {
+    if (!isAuthenticated) {
+      loginAsAthlete();
+      return;
+    }
+    setIsSubmittingApp(true);
+    const generatedRef = `BSG-2026-${(selectedSport || "ARCH").slice(0, 4).toUpperCase()}-${Math.floor(1000 + Math.random() * 9000)}`;
+    setSubmittedAppNumber(generatedRef);
+    setIsSubmittingApp(false);
+    setShowSuccessModal(true);
   };
 
   return (
@@ -309,6 +325,21 @@ export default function EligibilitySelectionPage() {
                     )}
                   </div>
                 )}
+
+                {evalResult.is_eligible && (
+                  <div className="pt-2">
+                    <button
+                      type="button"
+                      onClick={handleSubmitApplication}
+                      disabled={isSubmittingApp}
+                      className="w-full py-3 px-4 rounded-xl text-xs font-bold text-white bg-emerald-600 hover:bg-emerald-700 transition-all shadow-md flex items-center justify-center gap-2"
+                    >
+                      <Sparkles className="w-4 h-4" />
+                      <span>{isSubmittingApp ? "Registering..." : "Submit Formal Scholarship Application"}</span>
+                      <ArrowRight className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
               </div>
             )}
           </div>
@@ -362,6 +393,14 @@ export default function EligibilitySelectionPage() {
             </div>
           ))}
         </div>
+
+        {/* Success Modal */}
+        <ApplicationSuccessModal
+          isOpen={showSuccessModal}
+          onClose={() => setShowSuccessModal(false)}
+          applicationNumber={submittedAppNumber || "BSG-2026-APP-0001"}
+          sportName={selectedSport ? selectedSport.toUpperCase() : "Sports"}
+        />
       </div>
     </div>
   );
