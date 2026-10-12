@@ -11,7 +11,7 @@
 
 | Phase | Title | Status | Git Commit | Push Status | Completion Date |
 |---|---|---|---|---|---|
-| **Phase 1** | Requirements, Repository Inspection, and Project Foundation | **AWAITING USER APPROVAL** | `aa84c25` | Pushed to `origin/main` | 2026-10-12 |
+| **Phase 1** | Requirements, Repository Inspection, and Project Foundation | **IN PROGRESS (REVISION 1)** | Pending | Pending | In Progress |
 | **Phase 2** | UI/UX Design System and Public Website | NOT STARTED | - | - | - |
 | **Phase 3** | Backend Foundation and Database Architecture | NOT STARTED | - | - | - |
 | **Phase 4** | Authentication, Verification, and Access Control | NOT STARTED | - | - | - |
@@ -31,28 +31,28 @@
 
 ### Phase 1: Requirements, Repository Inspection, and Project Foundation
 - **Phase Number:** 1
-- **Phase Title:** Requirements, Repository Inspection, and Project Foundation
-- **Objectives:** Inspect the local workspace, environment, and remote Git repository; establish engineering governance (`green.md`), operational rules (`AGENTS.md`), project roadmap (`roadmap.md`), comprehensive system documentation (`docs/`), environment guidelines, and initial repository scaffolding.
+- **Phase Title:** Requirements, Repository Inspection, and Project Foundation (Revision 1 — Project Structure Correction)
+- **Objectives:** Establish comprehensive monorepo root structure (`frontend/`, `backend/`, `docs/`, `.github/`, root orchestration files); configure Next.js / TypeScript foundation files and FastAPI / Python foundation modules; implement initial health check endpoint and test foundations; update governance and architecture documentation.
 - **Planned Deliverables:**
   - Initialized Git repository targeting `main` branch with remote `https://github.com/ayushsingh257/Sportsbridge-India.git`.
-  - `.gitignore` configured for monorepo (Node, Python, Docker, secrets, uploads).
-  - `green.md` establishing 18 mandatory engineering rules.
-  - `AGENTS.md` specifying AI agent operational constraints.
-  - `roadmap.md` complete with all 13 development phases.
-  - `README.md` containing architectural overview, tech stack, installation, and usage.
-  - Core architecture documentation in `docs/` (`architecture.md`, `api.md`, `database.md`, `security.md`, `eligibility-rules.md`, `deployment.md`).
+  - Monorepo structure with discrete `frontend/` and `backend/` directories.
+  - Frontend foundation: `package.json`, strict `tsconfig.json`, `.env.example`, `public/`, `src/` modules, initial utilities, and unit test.
+  - Backend foundation: `pyproject.toml`, `requirements.txt`, `.env.example`, `app/` subpackages, `app/main.py` health endpoint, and unit tests.
+  - Root orchestration: `docker-compose.yml`, `.github/workflows/ci.yml`.
+  - Engineering governance & specifications: `green.md` (18 mandatory standards), `AGENTS.md`, `roadmap.md`, `README.md`, and complete `docs/` suite.
 - **Dependencies:** None.
 - **Acceptance Criteria:**
-  - Clean local git repository initialized without dangling artifacts.
-  - All governance and documentation files written and reviewed against master prompt instructions.
-  - Local environment runtimes verified (Node.js, npm, Python, Docker, Git).
-  - Phase 1 files staged, committed, and pushed to GitHub remote with verified commit hash.
-- **Testing Requirements:** Git status validation, file structure check, markdown syntax check.
-- **Status:** AWAITING USER APPROVAL
-- **Completion Date:** 2026-10-12
-- **Git Commit Hash:** aa84c25
-- **Push Status:** Verified pushed to origin/main
-- **Known Limitations:** None. Environment runtimes verified (Node v22.16.0, Python 3.13.5, Docker 29.4.3).
+  - `frontend/` and `backend/` exist with valid configuration and no missing architectural roots.
+  - Zero mock or placeholder code masquerading as complete features.
+  - All governance and documentation files accurate.
+  - Linting/testing commands verified.
+  - Phase 1 revision committed and pushed to GitHub with verified commit hash.
+- **Testing Requirements:** Git status validation, directory structure verification, frontend & backend configuration validation.
+- **Status:** IN PROGRESS (REVISION 1)
+- **Completion Date:** Pending
+- **Git Commit Hash:** Pending
+- **Push Status:** Pending
+- **Known Limitations:** Environment runtimes verified (Node v22.16.0, Python 3.13.5, Docker 29.4.3).
 - **Deferred Tasks:** None.
 
 ---

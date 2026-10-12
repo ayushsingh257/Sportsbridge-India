@@ -58,16 +58,64 @@ Eligibility is determined exclusively through published, configurable sporting a
 ## 4. Architecture Overview
 
 The system operates as a decoupled monorepo:
-```
-bharat-sports-grant/
-├── frontend/             # Next.js App Router frontend application
-├── backend/              # FastAPI application, rules engine, and financial ledger
-├── docs/                 # Architectural specifications, API schemas, security
-├── .gitignore            # Monorepo git exclusion rules
-├── green.md              # Mandatory engineering governance rules
-├── AGENTS.md             # Antigravity agent operational guidelines
-├── roadmap.md            # Master development phase tracker
-└── README.md             # Project documentation and guide
+```text
+Sportsbridge-India/
+├── frontend/
+│   ├── public/               # Static public assets (images, icons, favicons)
+│   ├── src/
+│   │   ├── app/              # Next.js App Router pages and route handlers
+│   │   ├── components/       # Reusable UI & domain components
+│   │   ├── hooks/            # Custom React hooks (theming, auth, forms)
+│   │   ├── lib/              # Utility functions and shared helpers
+│   │   ├── services/         # API client layer for backend communication
+│   │   ├── types/            # TypeScript interfaces and type definitions
+│   │   └── styles/           # Global styles and Tailwind CSS configurations
+│   ├── tests/                # Frontend unit and component tests (Vitest)
+│   ├── tsconfig.json         # Strict TypeScript compiler options
+│   ├── package.json          # Frontend dependencies and npm scripts
+│   └── .env.example          # Frontend environment variables template
+│
+├── backend/
+│   ├── app/
+│   │   ├── api/
+│   │   │   └── routes/       # Versioned API routes (/api/v1/auth, etc.)
+│   │   ├── core/             # Application config, settings, and logging
+│   │   ├── models/           # SQLAlchemy relational database models
+│   │   ├── schemas/          # Pydantic v2 validation schemas
+│   │   ├── services/         # Domain business logic
+│   │   ├── repositories/     # Database access and query abstractions
+│   │   ├── rules_engine/     # Configurable sports eligibility engine
+│   │   ├── security/         # Password hashing, JWT lifecycle, rate limiting
+│   │   ├── permissions/      # Role-Based Access Control (RBAC)
+│   │   ├── notifications/    # Alert services (email/SMS mock dispatch)
+│   │   ├── ledger/           # Controlled double-entry financial ledger
+│   │   ├── tasks/            # Background asynchronous task handlers
+│   │   ├── db/               # Async engine and database session management
+│   │   └── main.py           # FastAPI application entrypoint and health routes
+│   ├── migrations/           # Alembic database schema migrations
+│   ├── tests/                # Pytest test suite for APIs and domain logic
+│   ├── scripts/              # Database seeding and administrative utilities
+│   ├── requirements.txt      # Pinned Python package dependencies
+│   ├── pyproject.toml        # Backend build configuration and tool options
+│   └── .env.example          # Backend environment variables template
+│
+├── docs/                     # Architectural, API, database, and security specifications
+│   ├── architecture.md       # High-level architecture and module boundaries
+│   ├── api.md                # REST API contract definitions and schemas
+│   ├── database.md           # Relational schema and ER diagrams
+│   ├── security.md           # Threat model, RBAC matrix, and upload safeguards
+│   ├── eligibility-rules.md  # Multi-sport criteria rules engine details
+│   └── deployment.md         # Deployment, Docker, and migration instructions
+│
+├── .github/
+│   └── workflows/            # GitHub Actions CI/CD pipelines
+│
+├── docker-compose.yml        # Local orchestration for frontend, backend, PostgreSQL
+├── .gitignore                # Monorepo git exclusion rules
+├── AGENTS.md                 # Antigravity agent operational guidelines
+├── green.md                  # Mandatory engineering governance rules
+├── README.md                 # Project documentation and guide
+└── roadmap.md                # Master development phase tracker
 ```
 
 Detailed architectural diagrams and specifications are available in:
