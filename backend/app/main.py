@@ -2,40 +2,62 @@
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.exceptions import RequestValidationError
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
-app = FastAPI(
-    title="Bharat Sports Grant API",
-    description="API gateway for Indian sports scholarship and athlete development platform",
-    version="0.1.0",
-    docs_url="/docs",
-    redoc_url="/redoc",
+from app.core.config import settings
+from app.core.logging import logger
+from app.core.errors import (
+    AppError,
+    app_error_handler,
+    validation_error_handler,
+    http_exception_handler,
+    global_exception_handler,
 )
-
-# CORS configuration
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["http://localhost:3000"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
+from app.api.api import api_router
 
 
-@app.get("/")
-async def root():
-    """Root metadata endpoint."""
-    return {
-        "name": "Bharat Sports Grant API",
-        "status": "online",
-        "version": "0.1.0",
-    }
+def create_application() -> FastAPI:
+    """Application factory for Bharat Sports Grant API."""
+    application = FastAPI(
+        title=settings.APP_NAME,
+        description="Core API gateway and services for Bharat Sports Grant (Sportsbridge India)",
+        version="0.1.0",
+        docs_url="/docs",
+        redoc_url="/redoc",
+        openapi_url="/openapi.json",
+    )
+
+    # CORS Middleware
+    application.add_middleware(
+        CORSMiddleware,
+        allow_origins=settings.CORS_ORIGINS,
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+    )
+
+    # Global Exception Handlers
+    application.add_exception_handler(AppError, app_error_handler)
+    application.add_exception_handler(RequestValidationError, validation_error_handler)
+    application.add_exception_handler(StarletteHTTPException, http_exception_handler)
+    application.add_exception_handler(Exception, global_exception_handler)
+
+    # Mount API routers
+    application.include_router(api_router, prefix=settings.API_V1_PREFIX)
+
+    @application.get("/", tags=["Root"])
+    async def root_status():
+        """Root API metadata."""
+        return {
+            "name": settings.APP_NAME,
+            "status": "online",
+            "environment": settings.ENVIRONMENT,
+            "docs": "/docs",
+        }
+
+    logger.info("FastAPI application initialized in %s mode", settings.ENVIRONMENT)
+    return application
 
 
-@app.get("/api/v1/health")
-async def health_check():
-    """Health check endpoint for platform monitoring."""
-    return {
-        "status": "healthy",
-        "service": "api",
-        "phase": 1,
-    }
+app = create_application()
